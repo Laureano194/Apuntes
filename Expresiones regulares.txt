@@ -1,0 +1,34 @@
+**** REGULAR EXPRESSIONS ****
+
+Way to search through a string. Allows us to search through text in order to do things like validation or get pieces of the text.
+
+Format of a Regular expression
+They start and end with a forward slash.
+/   /gi (global-case insensitive)
+After the last forward slash goes a flag. It allows you to match anywhere in the string. Global means match all, without global means match just one. 
+
+Flags:
+g: global
+i: case insensitive
+m: multiline
+s: single line
+u: unicode
+y: sticky
+
+/e/g --> Busca todas las e en el string.
+/e+/g --> Busca una o mas.
+/ea?/g --> La a es opcional
+/ea*/g --> Es una mezcla del ? y *. Busca 0 o más.
+/.at/g --> cualquier letra que este en ese lugar cuando se encuentren las otras dos.
+/\./g --> Anula el significado especial del siguiente caracter. Aqui busca todos los puntos.
+/\w/g --> Busca todas las letras de las palabras.
+/\s/g --> Busca los espacios.
+En mayúscula hacen lo contrario.
+/\W/g --> Busca lo que no son letras de palabras.
+
+Si queremos capturar las palabras de mas de cuatro letras, podemos hacer lo siguiente.
+/\w{4,5}/g
+Devuelve todas las palabras de entre 4 y 5 letras
+Entre llaves se puede ingresar un minimo y un maximo.
+
+/[a-z]at/g matchea cualquier expresion que empieza entre a-z y termina en at.

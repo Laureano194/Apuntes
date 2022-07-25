@@ -1,0 +1,1319 @@
+**** JAVASCRIPT - JON MIRCHA ****
+
+Características y gramática:
+
+Unico lenguaje capaz de ejecutarse en 3 capas de una aplicación.
+1-FrontEnd(Js)
+2-Backend(NodeJs)
+3-Persistencia de datos(MongoDB, Firebase)
+
+Unica tecnología aceptada por navegadores para programar. 
+
+CARACTERÍSTICAS.
+
+-Lenguaje de alto nivel. Nos da abstracciones. No tenemos que recoger basura, por ejemplo.
+-Interpretado y dinámico. No necesita fase de compilación para pasar a fase de ejecución. Se compila en tiempo de ejecución.
+-Debilmente tipado. Las variables no se casan con un tipo de dato.
+-Multiparadigma: POO, programacion funcional, etc.
+-Case Sensitive.
+-No se necesitan puntos y comas al final de cada linea.
+
+Escritura de código.
+
+Identificadores deben comenzar con:
+-Letra
+-Signo dólar
+-Guion bajo
+-Nunca con numeros o caracteres especiales.
+
+Se usa snake_case en ARCHIVOS
+Se usa UPPER_CASE en CONSTANTES
+Se usa UpperCamelCase en CLASES
+Se usa camelCase en VARIABLES, OBJETOS, FUNCIONES, INSTANCIAS
+
+----------------------------------
+
+ORDENAMIENTO DE CÓDIGO.
+
+1- Importación de módulos
+2- Declaración de variables
+3- Declaración de funciones
+4- Ejecución de código
+
+---------------------------------
+
+TIPOS DE DATOS
+
+Datos primitivos: Se accede directamente al valor. string, number, boolean, NaN, undefined
+
+Compuestos: Se accede a la referencia del valor:
+objeto, array, funcion, clases.
+
+---------------------------------
+
+VARIABLES
+
+Lugar en la memoria para almacenar datos.
+¿Cómo se declara una variable en Javascript?
+
+Las variables tienen un ámbito de funcionamiento, un scope. "var" era de ámbito global. No tenía ámbito de bloque. Una variable declarada en un bloque if, for etc tenia también ámbito global.
+NO USAR VAR.
+Para tener ámbito de bloque, una variable se declara con "let".
+
+----------------------------------
+
+CONSTANTES
+
+Palabra reservada const. Nos permite guardar constantes. No puede haber constantes vacías.
+No pueden ser redeclarados ni modificados.
+
+Los objetos y arreglos son valores compuestos, por lo que accedemos a la referencia y no al valor. Por eso SI podemos modificarlo. 
+
+-----------------------------------
+
+STRINGS
+
+let nombre = "Jon"
+Pueden ser comillas dobles o simples.
+nombre.length // --> 3
+
+nombre.toLowerCase()
+apellido.toUpperCase()
+lorem.includes("amet") //--> true. Si esta esa palabra.
+lorem.trim() // --> Cadena sin espacios al inicio y al final
+lorem.split(" ") // --> Genera un arreglo a partir de una cadena separando cada vez que encuentra con el caracter pasado por parametro.
+
+**** Template Strings ****
+
+Concatenacion e interpolacion.
+let nombre = "Jon"
+let apellido = "Mircha"
+
+//Concatenacion
+let saludo = "Hola, mi nombre es " + nombre + " " + apellido
+
+//Interpolacion: Se introducen las variables dinamicamente.
+let saludo2= `Hola, mi nombre es ${nombre} ${apellido}`
+Se usan acentos invertidos.
+Es mas cómodo tambien al generar código HTML dinámicamente con Javascript.
+
+------------------------------
+
+BOOLEANS
+
+true/false
+Existen valores que no son verdaderos ni falsos, pero tienden a valores verdaderos o falsos.
+Truthy and Falsyk:
+console.log(Boolean(0)); --> false
+console.log(Boolean(-1)); --> true
+console.log(Boolean("")); --> false
+console.log(Boolean("Hola")); --> true
+
+------------------------------
+
+undefined, null & NaN
+
+null y undefined representan un valor ausente, una variable sin valor. undefined es una variable sin valor asignado. Null es un valor asignado intencionalmente por el programador.
+NaN:Cuando queremos hacer operaciones aritméticas entre datos que no sean numeros. 
+Ejemplo: console.log("hola"*2.5)
+
+-------------------------------
+
+FUNCIONES
+
+Es un bloque de código independiente al ámbito global. Se define una sola vez y se reutiliza tantas veces como sea necesario. Pueden recibir argumentos. Son muy poderosas en Javascript porque puedes retornar una nueva función.
+
+FUNCION DECLARADA
+
+function ejemploFuncion(argumento) {
+	console.log(argumento)
+}
+Invocacion:
+ejemploFuncion("UNO") // --> UNO
+
+//Funcion que devuelve valor
+
+function ejemploFuncion() {
+	-- Codigo --
+	return "Valor devuelto"
+}
+
+El return devuelve el valor. Cuando se ejecuta un return corta la funcion, ignorando las lineas siguientes. 
+
+//Asignar valor por defecto a parametro de funcion.
+
+function saludar(nombre="desconocido", edad=0){
+}
+
+Una function declarada puede ser invocada antes de la misma. Esto es porque Javascript eleva la función mediante hoisting.
+
+Otra manera de crear funciones.
+//Funcion anónima
+Se asigna la funcion a una variable. Suele ser const porque el cuerpo de la funcion no cambia.
+const funcionExpresada = function() {
+	console.log("Esto es una función expresada, es decir, un valor que se le ha asignado como valor a una variable. No podemos invocarla antes de su definición."
+}
+
+Buenas prácticas: Ambas opciones son válidas. Pero por ello es importante el ordenamiento del código, por lo cual las funciones deben ser declaradas antes de la ejecución del código. La declaración de funciones de manera expresada evita errores de compilación por tener mal acomodado el código. 
+
+---------------------------
+
+ARRAYS
+
+Declarar un arreglo.
+Se los puede declarar con la palabra const, ya que el identificador accede a la referencia del valor, y no al valor directamente. Mientras siga siendo un arreglo, sus elementos pueden cambiar sin problemas.
+const array = [1, true, "Casa", [1, 2, 3]]
+Comienzan en la posicion 0.
+
+const array2 = Array.of("X", "Y", "Z")
+const array3 = Array(100).fill(false) 100 posiciones con valor false.
+push() agrega elemento al final
+pop() elimina el ultimo elemento
+forEach(elemento, index) Ejecuta una funcion por cada elemento del arreglo.
+1º parametro: Elemento del array
+2º parametro(opcional): Indice del elemento.
+
+---------------------------
+
+OBJETOS
+
+En Javascript, todo es un objeto.
+Puedo inicializar un string de la siguiente forma.
+let string = new String("Cadena")
+
+Es adecuado trabajar con const al trabajar con objetos.
+Pero no es mandatario.
+{} // --> Objeto
+const obj = {}
+
+Un objeto es una colección de llaves y valores.
+const jon= {
+	nombre: "Jon",
+	apellido: "Mircha", 
+	edad: 35,
+	soltero: false,
+	contacto: {
+		email: "jonmircha@gmail.com",
+		twitter: "@jonmircha"
+		},
+	saludar: () => {
+		console.log("Hola")
+	}
+}
+console.log(jon.nombre)
+console.log(jon["nombre"])
+Las variables de un objeto se llaman ATRIBUTOS, las funciones, MÉTODOS.
+
+console.log(Object.keys(jon)) //Arreglo con todas las llaves.
+console.log(Object.values(jon)) // Arreglo con los valores.
+console.log(jon.hasOwnProperty("nombre")) // true
+
+------------------------
+
+Operadores:
+
+= // Asignación de variable
+== // Comparacion de valores
+=== // Comparacion fuerte(valor y tipo de dato)
+
+i++ // Incremento
+i-- // Decremento
+i+=2 // Suma 2
+
+Operadores lógicos
+! // Not
+|| // Or
+&& // And
+
+------------------------
+
+MANEJO DE ERRORES
+
+Javascript tiene un mecanismo para la detección y manejo de errores.
+try, catch, finally (finally no suele usarse)
+
+En el try se agrega el código a evaluar. Si hay un error, el catch lo captura.
+El finally se ejecutará siempre al final.
+
+try {
+} catch(error){
+} finally{
+}
+
+A veces necesito lanzar un error intencionalmente porque estoy pidiendo información en un formulario pidiendo datos numéricos y llegan como texto.
+Al captar el error, corta la ejecucion en el bloque try y salta al catch.
+
+Ejemplo de lanzamiento de errores personalizados.
+
+try{
+let num = 10
+if (isNaN(num)){
+	throw new Error("El caracter introducido no es un numero")
+}
+} catch(error){
+	console.log(`Se produjo el siguiente error: ${error}`)
+}
+Ventaja de trabajar propios errores es que será mas facil de depurar.
+
+-----------------------
+
+BREAK Y CONTINUE
+
+-----------------------
+
+18 - DESTRUCTURACIÓN
+
+Nueva forma de asignar valores. Se asigna dinámicamente lo que viene en un arreglo u objeto a nuevas variables. 
+
+let array = [1, 2, 3]
+
+Tengo un arreglo de números y tengo la necesidad de guardar cada valor en una variable diferente.
+
+let uno = array[0]
+let dos = array[1]
+let tres = array[2]
+
+Es mejor hacerlo así:
+const [uno, dos, tres] = array
+
+let persona = {
+	nombre: "Jon",
+	apellido: "Mircha",
+	edad: 35
+}
+
+let { nombre, apellido } = persona
+Para que la destructuracion funcione en los objetos, la nueva variable debe llamarse igual que la propiedad del objeto que quiero aislar.
+
+----------------------
+
+19 - OBJETOS LITERALES
+
+Nueva forma de escribir atributos y métodos.
+let nombre = "kenai"
+let edad = 7
+
+const perro = {
+	nombre: nombre,
+	edad: edad,
+	ladrar: function(){
+		console.log("WoW")
+		}
+}
+
+Si el atributo que quieres asignarle a un objeto tiene el mismo nombre que la variable que quieres asignar, puedes simplificar la sintaxis:
+
+const dog = {
+	nombre,
+	edad,
+	raza: "Callejero",
+	ladrar(){ //Tambien se simplifica la definicion de métodos.
+		console.log("WOW WOW")
+	}
+}
+
+----------------------
+
+20 - PARAMETROS REST & OPERADOR SPREAD
+
+Parámetros REST: Son una forma de ir agregando parametros infinitos a una función o variable. Se definen anteponiendo 3 puntos. Los parametros extras llegan como un array.
+
+function sumar(a, b, ...c){
+let resultado = a + b
+c.forEach((num) => resultado += num)
+return resultado
+}
+
+Spread Operator: 
+const array = [1, 2, 3, 4, 5]
+const array2 = [6, 7, 8, 9]
+
+const arrayMix = [...array, ...array2]
+console.log(arrayMix) // --> [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+----------------------
+
+21 - ARROW FUNCTIONS
+
+Son una nueva implementación que simplifica la escritura de funciones.
+Se quita la palabra functions y se agrega un =>
+
+const saludar = () => console.loh("Hola")
+const saludar = () => {
+	console.log("Hola")
+}
+
+const saludar = (nombre) => {
+	console.log(`Hola ${nombre}`)
+}
+
+Puede ser un return implicito.
+
+const sumar = (a, b) => a + b // ESTO NOS DEVUELVE A + B
+sumar(1, 2) // --> 3
+
+Capturan el contexto del elemento en el que se encuentran. NO USAR ARROW FUNCTIONS EN OBJETOS.
+
+const perro = {
+	nombre: "kenai", 
+	edad: 7, 
+	ladrar: function() {
+		console.log(this) AQUI THIS ES PERRO
+	}
+}
+
+LA FUNCION COMUN RESPETA EL OBJETO EN QUE SE ENCUENTRA, LA ARROW FUNCTION NO.
+
+const perro = {
+	nombre: "kenai", 
+	edad: 7, 
+	ladrar: () => {
+		console.log(this) AQUI THIS ES OBJETO WINDOW
+	}
+}
+
+La arrow function se saltan el contexto en el que estan y heredan el contexto en el que se encuentra su objeto padre.
+
+----------------------
+
+29 - OPERADOR DE CORTOCIRCUITO
+
+Funcionan poniendo dos condiciones, ya sea usando el operador logico Or o And.
+Cortocircuito OR: Cuando el valor de la izquierda en la expresion siempre pueda validar a true, es el valor que se cargará por defecto.
+Esto se utilizaba para setear un valor por defecto a los parametros de las funciones.
+
+function saludar(nombre){
+	nombre = nombre || "desconocido"
+	console.log(`Hola ${nombre}`)
+} Si nombre no está seteado, se setea "desconocido".
+
+
+
+Cortocircuito AND: cuando el valor de la izquierda en la expresion siempre pueda validar a false, es el valor que se cargará por defecto.
+
+Este se usa para renderizado condicional.
+
+----------------------
+
+EXPRESIONES REGULARES
+
+Secuencias de caracteres que forman un patron de busqueda, principalmente de cadenas de texto.
+
+----------------------
+
+FUNCIONES ANÓNIMAS AUTOEJECUTABLES
+
+Patrón muy utilizado para la ejecución de código.
+Es una función en la que englobas todo el código lo que quieres ejecutar.
+Se crea una encapsulación del código, de manera que lo que se encuentra en la FAA. Entre dos FAA aunque compartan una variable, no entran en conflicto.
+Protegido de efectos secundarios de importación de librerias, etc.
+
+(function(){
+	console.log("Mi primer FAA")
+})();
+
+(function(){
+	console.log("Mi segunda IIFE")
+})();
+
+Aquí si es necesario el punto y coma.
+La función se encierra entre parentesis.
+
+¿Como se reciben parametros?
+En los últimos parentesis.
+(function(d, w, c){
+
+})(document, window, console);
+
+Formas de escribir funciones anónimas.
+
+Clásica:
+(function(){
+})();
+
+Crockford:
+((function(){
+})());
+
+Unaria:
++function(){
+}();
+
+Facebook:
+!function(){
+}();
+
+----------------------
+
+MÓDULOS (IMPORT/EXPORT)
+
+Se puede llamar un archivo Javascript externo desde tu JS.
+
+<script src="js/modulos.js" type="module"></script>
+
+Lo primero que se ejecuta son las importaciones de módulos.
+
+Se antepone export a la funcion que se quiere exportar.
+Para importarla:
+import { funcion } from './directorio'
+
+No se puede usar export default dos veces.
+Lo que no llamamos por defecto, se debe hacer destructuracion.
+
+-----------------------
+
+44 - Temporizadores (setTimeOut y setInterval)
+
+Javascript tiene funciones que nos permiten lanzar otras en una cierta cantidad de tiempo.
+
+setTimeOut recibe una callback, es decir, una funcion que va a ejecutar y recibe el tiempo expresado en milisegundos.
+
+setTimeout(() => {
+}, 1000);
+
+SetInterval nos sirve si queremos ejecutar lo mismo cada cierto tiempo.
+
+setInterval(() => {
+}, 1000);
+
+Hay funciones que los cancelan.
+En caso de setTimeout, se llama clearTimeout. Para que funcione, el setTimeOut debe guardarse en una variable, que es la que recibirá el clearTimeout.
+
+clearSetInterval: Funciona de la misma manera. 
+
+---------------------
+
+45 - ASINCRONÍA
+
+Es un pilar fundamental de Javascript ya que es un lenguaje de un solo hilo, por lo que puede ejecutar una sola cosa a la vez.
+No se pueden realizar operaciones largas (Ej: acceso a la red) sin que se bloquee el hilo principal.
+Ejemplo: Solicitas datos a una api. Esto puede tardar tiempo. Mientras, el hilo principal se queda bloqueado. Ahi entra el juego la asincronía, que permite realizar largas operaciones de red sin bloquear el hilo principal. 
+Javascript trabaja bajo un modelo asíncrono y no bloqueante y tiene un loop de eventos implementado de un solo hilo para operaciones de entradas y salida. Gracias a esto es un lenguaje altamente concurrente a pesar de ser de un solo hilo. 
+
+Event Loop: Se van registrando las peticiones. Dependiendo del tipo de operacion intensiva que se vaya a hacer(acceso a los ficheros del sistema, solicitar datos a DB, o hacer procesamiento). Se van apilando las tareas y conforme terminen, regresan al event loop que envia un trigger con una notificacion al usuario.
+Call Stack: Peticiones que va haciendo la aplicación se van apilando y dependiendo si son síncronas o asíncronas se van liberando o no.
+
+Concurrencia: Cuando dos o mas tareas progresan simultaneamente.
+Paralelismo: Dos o mas tareas se ejecutan al mismo tiempo.
+
+Bloqueante/No bloqueante: Siempre hay una fase de espera cuando se ejecuta nuestro código. Si una operación es bloqueante, no devuelve el control a la aplicacion hasta que haya terminado su tarea. Las no bloqueantes devuelven inmediatamente el control al hilo principal. 
+
+Operaciones Síncronas/Asíncronas: Se refiere a cuando tendrá lugar la respuesta. 
+
+Síncrono significa que la respuesta sucede en el presente. Una operación síncrona espera el resultado y sigue. 
+
+En asíncrono, la respuesta sucede en un futuro. La operación asíncrona no espera el resultado. Por eso suelta el control y lo regresa al hilo principal. 
+
+En código síncrono bloqueante, cada operación se hace de una vez, bloqueando el flujo.
+
+http://latentflip.com/loupe/ 
+Esta herramienta muestra como se va ejecutando el código síncrono bloqueante y el asíncrono no bloqueante.
+
+Jvascript tiene distintos mecanismos para trabajar la asincronía. Callbacks, promesas, funciones asíncronas.
+
+------------------------
+
+46 - CALLBACKS
+
+Es una función que se ejecuta después que otra lo haga. Es el mecanismo por excelencia de Javascript para invocar alguna de sus funciones. Primer mecanismo de Javascript para trabajar con asincronía. El problema es si hay que trabajar con varias callbacks anidadas (CALLBACK HELL).
+
+El setTimeOut nos sirve para simular la asincronía.
+
+function cuadradoCallback(value, callback){
+	setTimeout(()=> {
+	callback(value, value*value)
+	}, 0 | Math.random()*100)
+}
+
+cuadradoCallback(0, (value, result)=>{
+console.log("Inicia callback");
+console.log(`Callback: ${value} ${result}`)
+})
+Tambien tienen el problema de que en cada callback hay que realizar el manejo de errores. Por eso es mas recomendable utilizar promesas y funciones asíncronas.
+
+-----------------------
+
+47 - PROMESAS
+
+Para resolver el manejo de errores en cada función y el callback hell, Javascript tiene un mecanismo que son las promesas. 
+
+Trabajan con dos recursos principales: El resolve y el reject.
+La podemos ver como un if/else. Si la promesa se cumple(Si accedemos al recurso, por ejemplo, los datos que estamos solicitando a una API) se ejecuta el resolve, sino ejecuta el reject. 
+
+function cuadradoPromise(value){
+  `Error, el valor ${value} no es un número.`)
+  if (typeof value !== "number") return Promise.reject(
+	return new Promise(resolve, reject)=>{
+	setTimeout(()=> {
+		resolve({
+			value : value,
+			result : value * value
+		)
+	}, 1000)
+	})	
+}
+
+Si es exitoso, nos devuelve el objeto con el valor y el resultado.
+
+cuadradoPromise(2)
+	.then(obj=> {console.log(obj)}) // Toma el objeto del resolve.
+	.then(obj) //Recibe el objeto que devuelve el then de arriba.
+	.catch(error => console.error(err))
+	
+
+----------------------
+
+48 - FUNCIONES ASÍNCRONAS : ASYNC / AWAIT
+
+Funciones asíncronas esperan a que algo se cumpla para poder seguir ejecutando el proceso. Las promesas vinieron a reemplazar las callbacks. Las funciones asincrónicas están para trabajar en conjunto con las promesas.
+Para el manejo de errores esta el bloque try/catch
+
+async function funcionAsync(){
+
+	try{
+		console.log("Inicio Async Function");
+		let obj = cuadradoPromise(1)
+		console.log(`Async function: ${obj.value} ${obj.result}`)
+		let obj2 = {cuadradoPromise(2)
+		console.log(`Async function: ${obj.value} ${obj.result}`) 
+	} catch(error) {
+	}
+}
+
+Esto va a devolver undefined en ambos casos, porque la función tiene un setTimeout.
+
+Para resolver esto, se utiliza await. Esto le dice a Javascript dentro de una función asíncrona que espere el resultado. La palabra reservada async va antes de la declaración de la funcion.
+
+async function funcionAsync(){
+
+	try{
+		console.log("Inicio Async Function");
+		let obj = await cuadradoPromise(1)
+		console.log(`Async function: ${obj.value} ${obj.result}`)
+		let obj2 = await cuadradoPromise(2)
+		console.log(`Async function: ${obj.value} ${obj.result}`) 
+	} catch(error) {
+		console.error(error); //El que devuelve la promesa.
+	}
+}
+
+
+const asyncArrowFunc = async () => {
+
+}
+
+Cuando estas pintando elementos del DOM si solicitas datos y automaticamente modificas el DOM dinamicamente sin esperar que la consulta se complete, aparecerá undefined. 
+
+-----------------------
+
+49 - SYMBOLS
+
+Tipo de dato primitivo. Una vez que lo creamos, su valor se mantiene privado y para uso interno.
+No se crea mediante el new, sino mediante el constructor Symbol().
+
+Nos permiten crear identificadores únicos.
+let id = "hola"
+let id2 = "hola"
+console.log(id === id2) // --> true
+
+let id = Symbol("id")
+let id2 = Symbol("id2")
+console.log(id === id2) // --> false
+La cadena de texto es para identificar el symbol.
+console.log(typeof id) // --> "symbol"
+
+La buena práctica es crearlos con constantes y mayúsculas.
+const NOMBRE = Symbol();
+Dentro de un objeto, el Symbol se declara en corchetes.
+const persona = {
+	[NOMBRE]: "Laureano" // Javascript sabe que hay un simbolo declarado.
+}
+console.log(persona) // Symbol(): "Laureano"
+
+-------------------------
+
+50 - SETS
+
+Estructura similar a un array, pero solo acepta valores únicos.
+
+let set = new Set([1, 2, 3, 1, "hola", "HOLA", true, false, false, {}, {}])
+
+console.log(set)/-> 1, 2, 3, "hola", "HOLA", true, false, Object, Object
+
+Los object son diferentes. 
+El set tiene la propiedad size, no length.
+console.log(set.size) // --> 9
+const set2 = new Set()
+set2.add(1)
+set2.add(2)
+set2.add(3)
+set2.add(3)
+console.log(set2) // --> 1, 2, 3
+
+--------------------------
+
+51 - MAPS
+
+Objetos que nos sirven para almacenar valores muy parecido a un objeto primitivo.
+
+let mapa = new Map()
+
+mapa.set("Nombre", "Jon")
+mapa.set("Apellido", "Mircha")
+mapa.set("edad", 35)
+
+console.log(mapa.size)
+console.log(mapa.has("correo")) // --> false
+console.log(mapa.get("Nombre")) // --> "Jon"
+mapa.set("Nombre", "Jonathan Mircha")
+mapa.delete("Apellido")
+
+¿Cómo recorrer un mapa?
+Es un elemento iterable, por lo que se puede utilizar un for of.
+
+for (let[key, value] of mapa):
+	console.log(`Llave: ${key}, Valor: ${value}`
+
+----------------------------
+
+56 - PROPIEDADES DINÁMICAS DE LOS ARREGLOS.
+
+Generar propiedad dinámicamente:
+Supongamos que tenemos que generar un objeto con el id de cada uno de los elementos de un array.
+
+const objUsuarios = {}
+const usuarios = ["jon", "kenai", "elsa"]
+
+usuarios.forEach((usuario, index) => objUsuarios[`id_${index}`] = usuario);
+
+console.log(objUsuarios)
+{
+id_0: "jon", 
+id_1: "kenai",
+id_2: "elsa"
+}
+
+Otra forma:
+
+random = Math.round(Math.random() * 100 + 5)
+const objUsuarios = {
+	[`id_${random}`]: "Valor aleatorio"
+}
+
+------------------------
+
+57 - THIS
+
+Hace referencia al contexto.
+console.log(this) // --> En los navegadores hace referencia al objeto window.
+
+function imprimir(){
+	console.log(this)
+}
+imprimir() // --> Objeto window
+
+const obj = {
+	nombre: "Contexto objeto",
+	imprimir: function(){
+		console.log(this.nombre)
+	}
+}
+obj.imprimir() // --> "Contexto objeto"
+
+Las arrow function no crean un scope. Si llamamos this dentro de un objeto con una arrow function, hara referencia al scope global.
+
+--------------------------
+
+58 - CALL, APPLY, BIND
+
+Tres metodos que nos permiten conservar la referencia de un scope particular.
+
+call sirve para asignar un contexto a una funcion al llamarla.
+Bind: Enlazar un contexto a una funcion.
+
+---------------------------
+
+59 - JSON
+
+Javascript Object Notation
+Formato ligero de intercambio de datos.
+Se ha convertido en un standard. Todos los lenguajes saben interpretar un objeto JSON.
+Ha ido desplazando a XML.
+
+const json = {
+	cadena: "jon", 
+	numero: 12,
+	boolean: true,
+	arreglo: []
+}
+
+se crea un fichero .json.
+Las propiedades y los valores deben ir entre comillas.
+
+{
+	"cadena": "jon", 
+	"numero": "12",
+	"boolean": "true",
+	"arreglo": []
+}
+
+JSON es una interfaz del lenguaje que tiene dos metodos: parse() y stringify().
+
+console.log(JSON.stringify(json))
+
+parse analiza una cadena de texto y lo convierte en un valor válido en Javascript.
+
+console.log(JSON.parse("{}")) //--> Object {}
+console.log(JSON.parse("[1,2,3]") //--> Array[]
+
+stringify toma un valor valido en Javascript y lo convierte a cadena de texto.
+
+console.log(JSON.stringify({})) //--> "{}"
+console.log(JSON.stringify(true)) //--> "true"
+
+------------------------
+Aquí termina lo referente a la gramática en Javascript.
+------------------------
+
+60 - WEB API(Application programming Interface)
+
+En un lenguaje de programación una API es una serie de objetos y mecanismos que tiene implementado un lenguaje para poder interactuar con otro sistema, en este caso con el DOM.
+-Manejo de eventos
+-Formularios
+-Consumo de datos asíncronos con AJAX-Fetch
+-History
+-Web Storage
+
+DOM(Document Object Model): Cómo los navegadores representan el codigo HTML para trabajarlo con Javascript. 
+
+------------------------
+
+61 - DOM
+
+Elementos del documento.
+
+Elemento padre: windows
+
+A traves del objeto document, se puede utilizar la notacion punto para acceder a cada parte del document html.
+---Obtener el HEAD
+console.log(document.head);
+console.log(document.body);
+console.log(document.documentElement); //Etiqueta HTML
+document.charset
+document.title
+document.links
+document.images
+document.forms
+document.styleSheets
+document.scripts
+document.getSelection().toString()
+document.write("<h1>Hola desde el DOM</h1>") MALA PRACTICA
+
+------------------------
+
+62 - DOM: NODOS, ELEMENTOS Y SELECTORES.
+
+Cada nodo tiee una razon de ser. Los que mas interesan son los nodos de tipo elemento y los nodos de tipo texto. 
+
+document.getElementById("menu")
+
+document.getElementsByTagName("li")
+document.getElementsByClassName("container")
+document.getElementsByName("nombre")
+
+Los últimos tres han sido reemplazados por otros dos métodos: querySelector y querySelectorAll. El querySelector es más lento que getElementById, por eso se sigue usando.
+
+document.querySelector(".menu") Trae el primero.
+document.querySelector("#menu li")
+document.querySelectorAll("a")
+
+A pesar de no ser arreglos, comparten el metodo length, el forEach.
+
+----------------------
+
+63 - DOM: Atributos y Data-Attributes
+
+document.documentElement.lang
+document.documentElement.getAttribute("lang")
+
+- Obtener datos
+document.querySelector(".link-dom").href
+document.querySelector(".link-dom").getAttribute("href") //Forma mas apropiada
+
+- Establecer nuevo valor
+document.documentElement.lang="es"
+document.documentElement.setAttribute("lang", "es-MX")
+
+Se pueden guardar los elementos del DOM en variables para no tener que reescribirlos múltiples veces.
+
+Se puede usar const o let.
+const $linkDOM = document.querySelector(".link-dom")
+
+Algunos desarrolladores, al guardar en una variable un elemento del DOM, le anteponen el símbolo "$" para poder distinguir que variables tienen que ver con la lógica de la aplicacion y cuales refieren a elementos de HTML.
+
+$linkDOM.setAttribute("atributo", "valor")
+$linkDOM.setAttribute("target", "_blank")
+$linkDOM.setAttribute("href", "www.youtube.com")
+
+-Quitar atributo
+$linkDOM.removeAttribute("atributo")
+$linkDOM.hasAttribute("target") // --> true
+
+DATA ATTRIBUTES
+Leer
+$linkDOM.getAttribute("data-description")
+$linkDOM.dataset // --> Devuelve un mapa
+$linkDOM.dataset.description
+Escribir
+$linkDOM.setAttribute("data-description", "DOM")
+$linkDOM.dataset.description = "Hola amigos de iutu"
+
+-------------------------
+
+64 - DOM: ESTILOS Y VARIABLES CSS
+
+Interactuar con estilos de elementos html.
+
+const $linkDOM = document.querySelector(".link-dom")
+
+$linkDOM.style
+style es un mapa de tipo CSS style declaration que agrega todas las propiedades CSS válidas. Estan en formato camelCase. Ejemplo: backgroundColor
+
+$linkDom.style.backgroundColor
+
+window.getComputedStyle(elemento)
+window.getComputedStyle($linkDOM) Es un objeto diferente que devuelve las propiedades dinámicas.
+
+getComputedStyle($linkDOM).getPropertyValue("color")
+
+Setear un estilo
+$linkDOM.style.setProperty("text-decoration", "none")
+$linkDOM.style.width = "50%";
+$linkDOM.style.textAlign = "center";
+$linkDOM.style.marginLeft = "auto";
+
+//Variables CSS - Custom Properties.
+
+<style>
+:root{
+	--yellow-color: #F7DF1E;
+	--dark-color: #222;
+{
+</style>
+
+const $html = document.documentElement;
+const $body = document.body;
+let varDarkColor = getComputedStyle($html).getPropertyValue("--dark-color");
+let varYellowColor = getComputedStyle($html).getPropertyValue("--yellow-color")
+
+body.style.backgroundColor = varDarkColor;
+body.style.color = varYellowColor;
+
+Modificar Propiedad
+$html.style.setProperty("--dark-color", "pink")
+
+-------------
+
+65 - DOM: CLASES CSS
+
+.card{
+      display: inline-block;
+     }
+.card figcaption{
+	  padding: 1rem;
+     }
+.rotate-45{
+	  transform: rotate(45deg);
+     }
+.rotate-135{
+	  transform: rotate(135deg);
+     }
+.opacity-80{
+      opacity: .8;
+      }
+.sepia{
+      filter: sepia(1);
+      }
+	
+const $card = document.querySelector(".card");
+console.log($card.className)
+console.log($card.classList)
+console.log($card.classList.contains("rotate-45") //FALSE
+Agregar una clase
+$card.classList.add("rotate-45")
+console.log($card.classList.contains("rotate-45") //TRUE
+Eliminar una clase
+$card.classList.remove("rotate-45")
+
+Existe un toggle. Si tiene la clase, la quita, sino la agrega.
+$card.classList.toggle("rotate-45")
+
+Reemplazar una clase por otra:
+$card.classList.replace("rotate-45", "rotate-135")
+
+Con todos estos métodos se pueden agregar y eliminar más de una clase a la vez.
+Se deben separar por coma.
+
+-------------------
+
+66 - DOM: TEXTO Y HTML
+
+const $whatIsDOM = document.getElementById("que-es")
+let text = "<p>El DOM es un API para documentos HTML y XML.</p>"
+
+$whatIsDOM.innerText = text;
+
+innerText no reconoce las etiquetas HTML, las imprime como texto.
+
+La propiedad que forma parte del estandar para agregar contenido textual es textContent.
+Tampoco interpreta las etiquetas HTML.
+
+Para ello se utiliza la propiedad innerHTML
+
+$whatIsDOM.innerHTML = text;
+
+Si se necesita insertar solo texto, utilizar textContent. Asi se evita la posibilidad de inyección de contenido HTML.
+El problema es que si se utiliza en una etiqueta <p> y se introducen en el literal string etiquetas <p>, estas quedaran dentro de la otra.
+Ejemplo.
+<p>
+	<p></p>
+	<p></p>
+	<p></p>
+</p>
+
+Esto no es semanticamente correcto o prolijo.
+
+Para ello se utiliza la propiedad outerHTML.
+
+$whatIsDOM.outerHTML = text;
+outerHTML reemplaza el elemento del DOM por el contenido del literal string.
+
+------------------
+
+67 - DOM TRAVERSING: Recorriendo el DOM
+
+Serie de propiedades para poder recorrer los elementos.
+
+<section class="cards>
+	<figure class="card"></figure>
+	<figure class="card"></figure>
+	<figure class="card"></figure>
+</section>
+
+const $cards = document.querySelector(".cards")
+Esto devuelve el section.
+
+console.log($cards.children)
+Devuelve una coleccion HTML con los hijos. (figure)
+
+console.log($cards.children[1])
+Devuelve el segundo hijo.
+
+console.log($cards.parentElement);
+Devuelve el elemento padre.
+
+console.log($cards.firstElementChild);
+Devuelve el primer hijo
+
+console.log($cards.previousElementSibling);
+console.log($cards.nextElementSibling);
+Siguiente y anterior elemento hermano.
+
+console.log($cards.closest("div"))
+Método que busca el padre más cercano.
+
+--------------
+
+68 - CREANDO ELEMENTOS Y FRAGMENTOS.
+
+Crear elementos dinamicamente a traves de JS.
+
+const $figure = document.createElement("figure"),
+$img = document.createElement("img"),
+$cards = document.querySelector(".cards");
+
+$img.setAttribute("src", "{Link a imagen}")
+$figure.appendChild($img)
+$figure.appendChild($figCaption)
+
+$cards.appendChild($figure);
+
+
+const estaciones = ["Primavera", "Verano", "Otoño", "Invierno"]
+
+$ul = document.createElement("ul")
+document.body.appendChild($ul)
+
+estaciones.forEach( el => {
+	$li = document.createElement("li")
+	$li.textContent = el
+	$ul.appendChild($li)
+}
+
+O ...
+
+const continentes = ["América", "Oceanía", "Europa", "Asia", "África"]
+
+$ul2 = document.createElement("ul")
+document.body.appendChild($ul2)
+
+continentes.forEach(el => {
+$ul2.innerHTML = ""
+$ul2.innerHTML += `<li>{el}</li>`
+}
+
+El problema es cuando necesitamos renderizar muchos elementos. A cada iteración del forEach estamos agregando un elemento al DOM, en este caso a la ul.
+Las inserciones al DOM son de las operaciones mas demandantes. Cuando se deben renderizar decenas o cientos de productos, se ralentizará la aplicación.
+
+Para esto existen los fragmentos. Una vez que se llena el fragmento con todos los registros, se hace una sola inserción al DOM.
+
+const meses = [
+	"enero",
+	"febrero",
+	"marzo",
+	"abril",
+	...
+}
+
+$ul3 = document.createElement("ul")
+document.body.appendChild($ul3)
+$fragment = document.createDocumentFragment()
+meses.forEach(mes => {
+	const $li = document.createElement("li")
+	$li.textContent = mes
+	$fragment.appendChild($li)
+})
+document.body.appendChild
+$ul3.appendChild($fragment)
+document.body.appendChild($ul3)
+
+Esta es una forma más óptima para no consumir tantos recursos al navegador.
+
+-----------
+
+69 - DOM: Templates HTML
+
+<template id="template-card")>
+</template>
+
+const $cards = document.querySelector(".cards"),
+$template = document.getElementById("template-card").content
+$fragment = document.createDocumentFragment();
+
+cardContent = ["", "", "", "",]
+
+cardContent.forEach(el => {
+
+$template.querySelector("img").setAttribute("src", el.img)
+$template.querySelector("img").setAttribute("alt", el.title)
+$template.querySelector("figcaption").textContent = el.title
+
+let $clone = document.importNode($template, true)
+El true es que se copia el contenido, y no solo la etiqueta template.
+$fragment.appendChild($clone)
+})
+$cards.appendChild($fragment);
+
+Las etiquetas template no se renderizan en el DOM. Sirven de modelo.
+
+---------------------
+
+71 - DOM: Modificando elementos.
+
+Métodos para insertr HTML. 
+.insertAdjacentElement(position, element)
+.insertAdjacentHTML(position, HTML)
+.insertAdjacentText(position, text)
+
+Posiciones disponibles:
+beforebegin(hermano anterior)
+afterbegin(primer hijo)
+beforeend(ultimo hijo)
+afterend(hermano siguiente)
+
+const $cards = document.querySelector(".cards"),
+$newCard = document.createElement("figure");
+$newCard.classList.add("card")
+
+let $cardContent.innerHTML = `
+<img src="www.source.com" alt="Any">
+<figcaption></figcaption>
+`;
+
+$newCard.insertAdjacentElement("afterbegin", $cardContent)
+//En este caso, es lo mismo afterbegin o beforeend, pero tiene que ser un hijo.
+
+$newCard.querySelector("figcaption").insertAdjacentText("afterbegin", "Any");
+
+También están los métodos.
+$cards
+.prepend($newCard) Primer hijo
+.append() Ultimo hijo
+.before() Hermano anterior
+.after() Hermano posterior
+
+---------------
+
+72 - DOM: Manejadores de eventos
+
+ * 📝 Los Eventos
+
+    👉 Es aquel mecanismo que tenemos en JS para poder controlar las acciones del usuario y definir ciertos comportamientos del documento q sucedan en cierto momento o cuando se cumplan algunas condiciones.
+
+    👉 Ahora, las funciones q se ejecutan en un Evento es lo q se conoce como el Event Handler o traducido Manejadores de Eventos, o tmb Observadores o Escuchadores.
+
+    👉 Hay 3 maneras de definir los Eventos en JS : 
+
+	1 - COMO ATRIBUTO DEL HTML
+
+<button onclick="aqui va el código JS"></button>
+<button onclick="holaMundo()"></button>
+
+   👀 Muy importante: 
+	
+   👉 No es la mejor forma
+	
+   👉 Esta función se va a convertir en el Manejador de Eventos (Event Handler)
+
+   👉 Cuando una función se convierte en un Event Handler, es decir una función que se ejecuta en un Evento, nosostros podemos acceder a un Objeto especial q es el Evento en sí, y eso lo podemos acceder con la palabra reservada 'event'
+	En el ejemplo, se accede a un objeto de tipo Mouse Event.
+   
+
+    function holaMundo(){
+
+       alert('Holaaa Mundo')
+
+       console.log(event)  //👈 con esto en la consola, se desencadena un tipo de Objeto MouseEvent (evento del Mouse), y dentro de él se encuentran dos propiedades muy importantes: type y target.       
+
+      //👉 type.- es el tipo de evento q se desencadeno
+
+      //👉 target.- es el elemento que origino el evento
+
+      //👉 Dentro de target estan todos los eventos y propiedades q se pueden usar por dicho elemento y los q estan en null son eventos q no tienen definida dicha función en dichos eventos. En cambio vemos el evento onclick q si tiene definida la funcion holaMundo
+
+    }
+
+   2 - COMO MANEJADOR SEMÁNTICO
+
+   👉 Esta forma es más correcta.
+
+   👉 Se le dice manejador semántico xq va teniendo una coherencia en la manera como la vamos definiendo
+
+   👉 cuando definamos un evento como semántico igualamos el evento semántico al nombre de la funcion pero sin (), xq los () hacen q cuando se cargue el Navegador se va a ejecutar
+	
+	<button id="evento-semantico"> Evento como manejador semántico</button>
+		
+    const $eventoSemantico = document.getElementById('evento-semantico')
+
+    $eventoSemantico.onclick = holaMundo //👈 no le ponemos () a la función xq sino al momento q se recarga el Navegador, se estará ejecutando el evento, y luego la consola nos dará undefined, xq el objeto event q mandamos a la consola no estará definido, xq la función se ejecutó asi como va, osea a la hora de cargar como tiene los parentesis se ejecuta.
+
+    
+
+   👇 esta es otra manera de definir un Evento de tipo semántico, puede ser una función anónima o una arrow function
+
+     $eventoSemantico.onclick = function(e){  //👈 Toda función q se convierte en un Manejador de Eventos, es decir una función q se ejecuta en algun momento en un evento no puede recibir parámetros, el único parámetro q recibe es el evento en sí, que lo podemos obtener con la palabra 'event' o en algunos casos abreviar con la letra 'e'
+
+        alert(`Hola Manejador de Evento Semántico`)
+
+        console.log(e)
+
+        console.log(event)
+
+     }
+
+   3 - COMO MANEJADOR MÚLTIPLE
+
+   👉 Si deseamos asignar varias funciones a un mismo elemento, tenemos el método .addEventListener() que nos perimite levantar un Escuchador de Eventos
+
+   const $eventoMultiple = document.getElementById('evento-multiple')
+
+   👇 este método .addEventListener() recibe varios parámetros, pero sólo nos enfocaremos en 2:
+
+   1° Nombre de evento
+
+   2° Función q se va a ejecutar, pero sin parentesis
+
+   $eventoMultiple.addEventListener('click', holaMundo)
+
+   
+
+   //👇 tmb podemos trabajar con una arrow function
+
+   $eventoMultiple.addEventListener('click', (e) => { //👈 este addEventListener nos dará 2 alerts y 4 console.log, nos da 2 alerts xq en vez de reemplazar como pasa más arriba con el evento de tipo semántico, esta es la ventaja de maneja evento múltiple con addEventListener xq puede ejecutar más funciones
+
+      alert(`Hola Manejador de Evento Múltiple`)
+
+      console.log(e)
+
+      console.log(e.type)
+
+      console.log(e.target)
+
+      console.log(event)
+
+   } )
+
+   //📝NOTA:
+
+   //👉 Cuando escuchemos de Event Handler hacemos referencia a la función q se ejecuta en dicho Evento   
+
+   //👉 Una misma función nos puede servir para desencadenar eventos en diferentes elementos
+
+   //👉 Los eventos semánticos tienen un pequeño inconveniente, si nos damos cuenta, cuando hablabamos de los Prototipos y hablamos de la funcion constructora, y si queriamos agregarle más métodos teniamos q agregarle a su Prototipo, aqui pasa algo similar, el onclick es como agregarle un método al Prototipo del Modelo de eventos del elemento del DOM q se estamos manejando
+
+   //👉 Habrá veces q a lo mejor a un mismo elemento Html le asignemos diferentes Manejadores de Eventos, es decir diferentes funciones q hagan diferentes cosas, bueno la limitante q tienen los eventos de tipo semántico, es q una vez q esta definido el evento semántico sólo va poder ejecutar una función.
+
+   //👉 Toda función q se convierte en un Manejador de Eventos, es decir una función q se ejecuta en algún momento en un evento no puede recibir parámetros, el único parámetro q recibe es el evento en sí, que lo podemos obtener con la palabra 'event' o en algunos casos abreviar con la letra 'e'
+
+-----------------
+
+73 - DOM: Eventos con Parámetros y Remover Eventos
+
+Cualquier funcion que se ejecute en un evento, solo puede recibir como parametro el evento en si.
+
+function saludar(nombre = "desconocid@"){
+	alert(`Hola ${nombre}`)
+}
+
+$eventoMultiple.addEventListener("click", saludar)
+
+Hola [object MouseEvent]
+Aunque tenga un parametro con un valor por defecto(en este caso nombre) no lo toma.
+
+$eventoMultiple.addEventListener("click", ("Laureano")=>saludar());
+
+Envolviendo la función manejadora de eventos en una arrow function permite pasar parámetros.
+
+ELIMINAR EVENTOS DE UN ELEMENTO.
+
+<button id="evento-remover">Remover</button>
+
+$eventoRemover = document.getElementById("evento-remover")
+$eventoRemover.removeEventListener(evento, funcionManejadora) // Por eso no se puede eliminar una arrow function.
+
+$eventoRemover.removeEventListener("dblclick", removerDblClick)
+
+---------------------
+
+75 - DOM: stopPropagation & preventDefault 
+
+---------------------
+
+105 - AJAX: Introducción
+AJAX no es una tecnología en si misma, sino un conjunto de tecnologías.
+Asynchronous Javascript and XML
+XML ha quedado de lado con JSON.
+Mecanismo de Javascript para trabajar con la asincronia y hacer peticiones al lado del servidor.
+Gracias a AJAX ya no es necesario que se recargue el navegador al hacer una petición. Ejemplo, un mail se agrega al tope de la lista sin tener que recargar la web.
+
+Hay tres métodos nativos para hacer AJAX.
+ActiveXObject(obsoleto)
+XMLHttpRequest
+API Fetch(moderno)
+
+La más popular de las librerias externas es AXIOS.
+Está basado en promesas.
+
+-----------------
+
+ 107 - AJAX: API Fetch

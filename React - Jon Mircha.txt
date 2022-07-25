@@ -1,0 +1,296 @@
+Curso React con jonmircha
+
+**** INTRODUCCIÓN ****
+
+Libreria Javascript para el desarrollo de UI dinámicas. 
+Programación reactiva y orientada a componentes.
+Componente: Pieza de código html con presentacion(estilo) y funcionalidad(javascript).
+Trabaja respondiendo a los cambios internos de sus componentes y volviendo a renderizar la interfaz.
+Utiliza una técnica llamada virtualDOM, copia del DOM. Cuando un nodo en particular se actualiza, no vuelve a renderizar todo, sino que detecta qué componente sufrió un cambio de estado y vuelve a pintar esa parte. 
+
+Comunicación unidireccional. La información fluye de elementos padres a hijos.
+
+Ventajas: 
+- Alto rendimiento.
+- Recursos abundantes
+- Compatibilidad con versiones anteriores.(No como Angular)
+- Estructura de componentes fáciles de mantener: Ayuda a aumentar la reutilización del código y facilita el mantenimiento a gran escala.
+- Fuerte comunidad.
+- Flujo de datos unidireccional: Los cambios del componente hijo no afecta la estructura del componente padre.
+
+Desventajas:
+- Complejo
+- JSX: agrega otra capa de complejidad.k
+- Necesidad de un ecosistema con muchas herramientas
+- Problemas de SEO
+
+**** CREATE REACT APP ****
+
+Herramienta que permite empezar a ejecutar aplicación react con un comando. 
+
+npx create-react-app nombre-aplicación
+
+Estructura del proyecto:
+Carpeta src
+- package.json: Dependencias
+- .gitignore: Cuando se crea un proyecto con create react-app ya se está haciendo tracking con git.
+- node-modules
+- src: La carpeta de código.
+- index.js: Este es el punto de entrada de webpack
+- App.js: Componente principal. Encargado del renderizado.
+Carpeta public: archivos que necesita webpack para que se vean en el servidor web local.
+- robots.txt: Para los buscadores.
+
+
+**Scripts:
+npm start: Inicia el servidor de desarrollo y abre un navegador con la aplicación.
+npm test: ejecuta las pruebas
+npm build: Empaqueta la aplicación para producción en carpeta build. Carpeta public y src no sirven para producción. Todos los frameworks tienen que compilar a vanilla JS que es lo que entienden los navegadores.
+npm run eject: Permite cambiar manualmente las librerias que utiliza create-react-app por defecto. No tiene rollback.
+
+React-devtools:
+En la consola se agregan dos pestañas: componentes y profiles.
+En VS Code:
+Simple React Snippets.
+
+
+**** JSX ****
+
+Sintaxis Javascript que produce elementos de React. No es HTML!
+
+Se pueden crear estructuras de control, asignar variables, aceptar argumentos, retornar funciones, etc. JSX se transforma en Javascript.
+
+Ejemplo: <div className="container">Hola Mundo</div>
+se transforma en:
+React.createElement("div", {className: container}, "Hola Mundo")
+
+Toda estructura JSX debe estar empaquetada en un solo elemento contenedor.
+
+Esto esta mal.
+<div></div>
+<article></article>
+
+Esto esta bien. Crea un fragmento React.
+<>
+	<div></div>
+	<article></article>
+</>
+
+Para renderizar una variable, se usan {}
+<p>{nombre}</p>
+
+Las etiquetas se cierran en la misma linea de codigo.
+
+**** COMPONENTES ****
+
+Estas librerias se caracterizan por la filosofía de "Divide y venceras", crear componentes muy especializados que hagan una sola cosa. Un componente es una UI que tiene codigo de contenido(HTML) código de presentacion (CSS) y funcionalidad (Javascript). 
+Los componentes pueden o no tener estado.
+El estado es las variables internas de la aplicacion.
+
+React permite definir componentes como clases o como funciones.
+Antes solo tenian estado los componentes de clase. Con los hooks, los funcionales tambien.
+
+**COMPONENTE DE CLASE
+class Componente extends React.Component{
+render(){
+return(
+<h2></h2>
+)}
+}
+
+export default Componente
+Si no uso default, en el archivo App tendria que usar la desestructuracion para importarlo.
+
+<Componente />
+
+**COMPONENTE FUNCIONAL
+function Componente(props){
+return <h2>{props.msg}</h2>;
+}
+export default Componente
+
+**COMPONENTE FUNCIONAL CON ARROW FUNCTIONS
+
+const Componente = (props) => {
+
+return <h2>props.msg</h2>
+
+}
+
+**** PROPS ****
+
+Propiedades que un componente padre le envia a un componente hijo agrupadas en un objeto llamado props.
+Son valores de solo lectura.
+En un componente funcional, recibe las props como argumento. Desde el componente padre, se envian como atributos HTML: 
+<Componente msg="Hola Mundo" />
+
+Se pueden establecer propiedades por defecto.
+Componente.defaultProps = {
+	msg: "Mesaje por defecto",
+	numero: {10},
+	booleano: {false}
+}
+
+A traves de las props se pueden pasar cadenas, numeros, arreglos, componentes React, elementos React, funciones.
+
+<Componente 
+	cadena="Cadena de texto"
+	numero={10}
+	booleano={false}
+	arreglo=[1, 2, 5]
+	elementoReact={<i>Elemento React</i>}
+	componenteReact={<Componente />}
+	funcion={(num) => num*num}
+/>
+
+PROPTYPES: Es un modulo que nos permite inicializar las props con un tipo especifico, y que sean requeridas.
+
+**** ESTADO ****
+El estado son los valores internos que manejan la lógica y los datos de un componente, permite que éste reaccione a cualquier cambio lo que harña que se vuelva a renderizar la interfaz.
+
+3 características:
+- Inmutable: Cuando se modifica, se genera una copia y se le agrega lo nuevo.
+- No se puede modificar directamente:
+- Asíncrono: 
+
+Para hacer cambios se debe usar el método setState.
+
+this.state = {
+	title : "Hola mundo"
+}
+
+El estado solo es accesible desde el componente que lo posee y asigna.
+Flujo unidireccional de la información.
+Cada vez que cambia el estado se vuelve a renderizar el componente en la vista. Se vuelve a renderizar solo el elemento que se vea afectado. Esto React lo hace gracias a su Virtual DOM, que le permite saber cual es el nodo exacto que debe actualizar. Se vuelve a ejecutar el metodo render.
+
+export default class Estado extends React.Component {
+	constructor(props){
+	super(props);
+	this.state = {
+		contador: 0,
+	};
+	setInterval(()=>{
+	this.setState({
+	contador: this.state.contador + 1,
+	}, 1000)
+	}
+	render(){
+		return(
+		<div>
+			<h2>Estado</h2>
+		</div>
+		)
+	}
+}
+
+
+**** RENDERIZADO CONDICIONAL ****
+
+function Login(){
+return(
+	<div>
+		<h2>Login</h2>
+	</div>
+)}
+
+function LogOut(){
+return(
+	<div>
+		<h2>Logout</h2>
+	</div>
+)}
+
+export default RenderizadoCondicional extends React.Component{
+	constructor(props);{
+	super(props);
+	this.state = {
+		session: true;
+	}
+	render(){
+	return(
+		<div>
+		{this.state.session 
+		? <Login />
+		: <LogOut />
+		}
+		</div>
+	);
+	}
+}
+
+
+**** RENDERIZADO DE ELEMENTOS ****
+
+export default RenderizadoElementos extends React.Component{
+	constructor(props){
+	super(props);
+	
+	this.state = {
+		estaciones: ["Invierno", "Otoño", "Primavera", "Verano"]
+	}
+	}
+	render(){
+	return(
+		<>
+			<h1>Estaciones del año</h1>
+			<ul>
+			this.state.estaciones.map((estacion) => {
+				<li key={estacion}>{estacion}</li>
+			})
+			</ul>
+		</>
+	)}
+}
+
+Cada elemento hijo de una lista debe tener una clave única.
+El atributo key. Este lo necesita el Virtual Dom de React, es invisible para el DOM en si mismo.
+
+
+-------------------------------------
+
+17 - Hook useEffect ( 1/2 )
+
+Nos va a permitir representar el ciclo de vida de los componentes de clase en los componentes funcionales.
+
+Podemos representar:
+-componentDidMount() montaje
+-componentDidUpdate() actualizacion
+-componentWillUnmount() desmontaje
+
+FASE DE MONTAJE
+useEffect(() => {
+console.log("Fase de actualización")
+}, [])
+
+FASE DE ACTUALIZACION
+useEffect(() => {
+console.log("Fase de actualización")
+const detectarScroll = () => setScrollY(window.pageYOffset)
+window.addEventListener("scroll", detectarScroll);
+});
+
+ Si no especificamos el segundo parametro(lista de dependencias), lo que este en el useEffect se va a renderizar cada vez que se vuelva a pintar el componente. Funcionará como un componentDidUpdate.
+ 
+ Si quiero representar la fase de montaje, debe recibir un segundo parametro, que son las dependencias que va a leer. Arreglo[]
+ 
+ useEffect(() => {
+ 
+ }, [scrollY]);
+ 
+ 
+ Si necesitamos que el useEffect solo se ejecute una vez, podemos dejar el array vacío. Ejemplo, en una peticion a una API.
+ 
+ FASE DE DESMONTAJE
+ useEffect(()=> {
+ console.log("Fase de desmontaje")
+ return () => {
+ window.removeEventListener("scroll", detectarScroll);
+	
+ 
+ }
+ }
+ 
+ 
+ En la fase de desmontaje retornamos una función. Solo con retornar una funcion, React entiende que debe ejecutarlo en fase de desmontaje del efecto. 
+ Este es el momento de desconectarse de APIs, desuscribirse de servicios, limpiar intervalos de tiempo, limpiar manejadores de eventos.
+ Cuando agregamos listeners, temporizadores, solicitudes a APIs estamos consumiendo memoria del navegador.

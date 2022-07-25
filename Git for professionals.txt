@@ -1,0 +1,102 @@
+GIT
+
+What is GIT?
+A Version Control System(VCS) for tracking changes in computer files.
+Created in 2005 by Linus Torvalds.
+
+✓ Distributed version control system. Many developers can work on a single project without being in the same network.
+✓ Who made what changes and when.
+✓ Revert back at any time to specific versions.
+✓ Local and remote repositories (Github/Bitbucket).
+
+CONCEPTS OF GIT
+
+✓ Keeps track of code history.
+✓ Takes "snapshots" of your files.
+✓ You decide when to take a snapshot by making a "commit".
+✓ You can visit any snapshot at any time.
+✓ You can stage files before committing.
+
+Once you make a commit to a remote repository, other developers can pull that information to their computers.
+
+BASIC COMMANDS.
+
+$ git init 	
+// Initialize Local Git Repository. Creates a .git folder. Once it is a git repository, you can run other commands.
+
+$ git add <file> 
+// Add File(s) to Index, to staging Area. They will then be ready for commit.
+Can  be ran as many times as needed.
+
+$ git status
+// Check status of Working Tree. Displays the differences between the working tree and the staging area.
+
+$ git commit 
+// Commit changes in Index. Will put them into the local repository.
+
+
+Remote repositories
+$ git push
+// Push to Remote Repository (Github)
+
+$ git pull
+// Pull Latest changes from Remote repository.
+
+$ git clone
+// Clone Repository into a new directory.
+
+-------------------------------------------------
+
+Create a folder.
+Inside it, right click and "Git Bash Here"
+
+-touch index.html
+-touch app.js
+- git init
+- git config --global user.name '{name}'
+- git config --global user.email '{email}'
+- git add index.html
+
+If we want to remove index.html from the staging area(When it is not in the remote repository yet, i believe):
+- git rm --cached index.html
+
+- git add *.html 	// Adds every html file.
+- git add . 		// Add every file
+
+If we change a file in the staging area and we want those changes to be in the commit, we will need to add that file again with git add <file>.
+
+- git commit -m "{comment}" 
+
+
+GIT IGNORE:
+A file where we can include files and folders that we don't want to include in our repository. Even if we run 'git add .' , it won't include those.
+
+touch .gitignore
+log.txt
+/dir1
+/dir2/app2.js
+
+git branch
+
+
+------------------------------------------------
+
+GIT FOR PROFESSIONALS
+
+#1 - The Perfect Commit
+
+Our goal is to make a commit that makes sense, one that only includes changes from a single topic. In contrast to the easy way, like when we add all the changes we had made to a single commit.
+
+Example
+
+
+File A, File B, File C into a single commit is a bad idea.
+File A and B into commit c1 and C into commit c2 is way better.
+
+Being selective and carefully deciding which changes should be included in the next commit is REALLY important.
+The bigger a commit gets and the more topics it includes, the more difficult it is for another colleague or yourself to understand in the future.
+
+
+
+1 - Add the right changes.
+2 - Compose a good commit message.
