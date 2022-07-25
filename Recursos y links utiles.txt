@@ -1,0 +1,29 @@
+https://linuxjourney.com/
+Learn the ways of Linux-fu, for free. Recurso recomendado para aprender Linux
+
+https://crontab.guru/
+The quick and simple editor for cron schedule expressions
+
+https://teachyourselfcs.com/
+If you’re a self-taught engineer or bootcamp grad, you owe it to yourself to learn computer science. Thankfully, you can give yourself a world-class CS education without investing years and a small fortune in a degree program.
+
+https://wiki.archlinux.org/
+Arch Linux Wiki
+
+https://www.reddit.com/r/linux4noobs/comments/980xt0/information_bomb_for_new_users/
+Information bomb for new Linux users
+
+https://www.reddit.com/r/learnprogramming/wiki/faq/
+r/learnprogramming subreddits wiki
+
+https://fullstackopen.com/es/
+Bootcamp. Profundización en el desarrollo web moderno.
+
+https://www.theodinproject.com/
+Bootcamp. Your Career in Web Development Starts Here 
+
+https://www.youtube.com/c/Freecodecamp
+Decenas de cursos y proyectos
+
+https://www.freecodecamp.org/
+Learn to code - for Free
