@@ -1,0 +1,250 @@
+------- CSS -------
+
+Hoja de estilo en cascada:
+Se leen los estilos de arriba hacia abajo, siendo el 
+último el más importante.
+
+-----Especificidad-----
+
+¿Qué soluciona?
+Establece las jerarquías segun las cuales
+un estilo sobreescribea otro en caso de conflictos.	
+
+1º !important
+2º Estilos en linea
+3º Identificadores
+4º Clases-Pseudoclases-Atributos
+5º Elementos-Pseudo-elementos
+
+-----Metodologia BEM-----
+
+"Block, Element, Modifier"
+Consiste en evitar seleccionar muchas clases para no 
+generar conflictos. Así podremos saber qué elementos
+estamos seleccionando a partir de las clases. Nos
+basamos en el nombre de la clase para saber que elemento
+estamos seleccionando.
+
+¿Cómo se aplica BEM?
+Se utiliza la clase del elemento contenedor + 
+dos guiones bajos + nombre elemento.
+
+<div class="contact-form">
+	<input type="text" class="contact-form__input">
+	<input type="text" class="contact-form__input">
+	<input type="text" class="contact-form__input--active">
+	<input type="password" class="contact-form__input">
+</div>
+
+Si queremos cambiar algo a un elemento, podemos hacer:
+1º .contact-form__input:first-child{} Selecciona el 1º elemento.
+2º .contact-form__input--active{}
+
+-----UNIDADES-----
+
+2 tipos de unidades de medida.
+
+- ABSOLUTAS: Son fijas (Ejemplo: píxeles)
+
+- RELATIVAS: Dependen de algo. Son variables.
+  Dependen de la caja contenedora. Ayudan a
+  la adaptación a distintas pantallas.
+  
+  EM: Por defecto son 16px. Pero el contenedor define
+  el valor del em. Si al div le pongo un font-size de
+  20px, el em dentro del mismo valdrá 20.
+  Esto funciona para cualquier propiedad que trabaje conflictos
+  unidades de medida (font-size, padding, margin)
+  
+  VIEWPORT: Porcentaje de la pantalla que ocupa un 
+  elemento. height:100vh(viewport height) ocupa todo el alto,
+  width:100vw(viewport width), todo el ancho.
+  
+-----TIPOGRAFIA-----  
+  
+**Propiedades**
+
+font-size: cambia tamaño de letra
+font-family: tipografia
+font-weight: grosor de letra
+line-height: espacio que ocupa una letra. Si es 1, solo ocupa
+el tamaño de la letra. Si es 2, ocupa el doble del tamaño
+de la letra.
+
+-----NORMALIZE-----
+
+Los navegadores traen una serie de estilos por 
+defecto. Márgenes, fuentes, colores.
+Estos se reinician mediante el Normalize.
+normalize.css
+
+img {
+max-width: 100%; //Para que en celulares, img ocupe toda la pantalla.
+}
+*{
+box-sizing: border-box; 
+}
+Si seteo el tamaño de la caja y luego seteo el padding, no 
+modifica el tamaño de la misma. 
+
+-----TEORIA DE CAJAS-----
+
+2 tipos de cajas.
+Block: Ocupan todo el ancho posible. El total de la caja que la contiene.
+Ocupa una linea.
+Inline-block: Solo tiene el contenido. No inicia en una nueva linea.
+
+Block level: <div>, <h1>-<h6>, <p>, <form>
+Inline level: <span>, <img>, <a>
+
+Mediante la propiedad display, puedo cambiar el comportamiento de 
+las cajas.
+display: block;
+display: inline-block;
+
+A los elementos en linea no le podemos setear height ni width.
+
+*PROPIEDADES DE CAJA*
+background-color: fondo
+display: block/inline-block
+height
+width
+border-radius
+
+PADDING
+Distancia texto/caja. Propiedad acortada.
+padding(T/R/B/L): 
+padding: 20px;
+padding: 20px(ejeX) 30px(ejeY);
+padding: 10px(T) 20px(R) 30px(B) 40px(L);
+
+MARGIN
+Distancia entre cajas. Propiedad acortada.
+margin(T/R/B/L): 
+margin: 20px;
+margin: 20px(ejeX) 30px(ejeY);
+margin: 10px(T) 20px(R) 30px(B) 40px(L);
+
+*BOX MODEL*
+content: Lo que hay en la caja.
+padding
+border
+margin
+Estas propiedades se ponen en este orden.
+
+*OUTLINE:
+Genera un borde sin ocupar un espacio real, sin afectar a las otras
+cajas. El borde si ocupa un lugar real.
+
+*-----POSITION-----*
+
+-STATIC: No posicionado
+
+-RELATIVE:
+Permite utilizar propiedades TOP,RIGHT, LEFT, BOTTOM. TOP y LEFT tienen mayor jerarquía.
+Mueve el elemento pero el espacio reservado se conserva.
+Adquiere tambien la propiedad Z-INDEX. Los ordena en el eje Z. Estará adelante
+el elemento con el valor más alto.
+
+-ABSOLUTE:
+Tres diferencias con Relative. 
+ 1º El espacio deja de estar reservado.
+ Centrar un elemento dentro de un contenedor:
+ top:0;
+ bottom:0;
+ left:0;
+ right:0;
+ margin:auto;
+
+-FIXED:
+Funciona igual que ABSOLUTE, pero queda fijado.
+No ocupa lugar reservado en pantalla. El contenido se ajusta.
+
+-STICKY:
+Conserva el espacio en la página, al igual que el position relative.
+Puede estar en cualquier parte de la página el contenido, pero queda fixed
+cuando llega a la posicion especificada. Ej: top:0px;
+¡Muy bueno este!
+
+*-----DISPLAY-----*
+Modifica el comportamiento de las cajas.
+-Block
+-Inline
+-Inline-block: Le podemos dar un ancho y un alto.
+-Grid
+-Flex
+-Inline-Grid
+-Inline-flex
+-Otros
+
+Cajas Flex y Grid se comportan como block.
+Lo que está adentro de la caja no.
+
+OVERFLOW: Cuando el contenido sobrepasa el tamaño de la caja.
+Es un short hand: tenemos overflow-y, y overflow-x
+¿Qué hacemos con lo que sobra?
+Por defecto, inherit, que deja que se sobresalga.
+auto: Nos permite scrollear dentro del contenedor.
+scroll: Pone obligatoriamente la barrita scroll.
+hidden: se oculta el scroll.
+
+Las imagenes se adaptan al contenedor.
+
+*-----FLOAT-----*: No se usa tanto. Se puede usar para poner un texto envolviendo una
+imagen.
+Tiene que estar la imagen primero con un float right, y el texto sin un 
+contenedor.
+
+PSEUDOELEMENTOS: 
+::first-line: funciona en elementos de bloque. Permite dar estilo a la primera
+linea. Esto hace que aunque cambie el tamaño de la pantalla, siempre el 
+estilo afecte solo a la primera linea.
+::first-letter: lo mismo pero con la primera letra.
+::placeholder: Cambia el estilo del placeholder
+::selection: lo que selecciono. Por defecto el color de texto pasa a blanco y
+el background a celeste.
+
+::before y ::after
+- No forman parte del dom. No lo puedo seleccionar.
+- Hijos del elemento al que se aplican.
+- Obligatoria etiqueta "content"
+
+PSEUDOCLASES:
+Escucha un evento.
+:hover --> Al pasar el mouse. Funciona en cualquier elemento. Ejemplo: .caja:hover{}
+:link --> Cambia un link aun no visitado.
+:visited --> Cambia un link visitado.
+:active --> Cambia el estilo al mantener apretado un botón.
+:focus --> Cuando el elemento está en foco. Se usa en los inputs.
+:lang: --> Modifica el estilo de un lenguaje particular.
+
+OBJECT-FIT: Se aplica mucho a imagenes para que se adapten al contenedor
+sin deformarse.
+Contain: Por defecto. La resolucion de la imagen se ajusta al contenido.
+No llena el contenedor, pero conserva su forma.
+Cover: La imagen se ajusta al contenedor y recorta los bordes.
+None: Usa propiedades por defecto.
+Scale-down: Si none es mas chiquito, deja none, sino, contain.
+OBJECT-POSITION: Ubica la parte de la imagen que se ve.
+
+*-----COLORIZACION-----*
+HTML Color Codes.
+rgba : maneja tambien la opacidad.
+rgba(255, 47, 85, 0.2)
+
+*-----RESPONSIVE DESIGN / MOBILE FIRST -----*
+Agregar etiqueta meta viewport.
+@media only screen and(max-width:800px){
+/*Cuando pantalla tenga resoluciones menores a 800px corren estos estilos.*/
+div{
+display: block;
+}
+h1{
+font-size: 25px;
+}
+}
+
+*-----FLEXBOX-----*
+Caja flexible. Los cambios se notan en los items dentro del contenedor.
+Cross Axis: Cross-start / Cross-end
+Main Axis: Main-start / Main-end
