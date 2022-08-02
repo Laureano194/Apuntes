@@ -96,7 +96,161 @@ File A and B into commit c1 and C into commit c2 is way better.
 Being selective and carefully deciding which changes should be included in the next commit is REALLY important.
 The bigger a commit gets and the more topics it includes, the more difficult it is for another colleague or yourself to understand in the future.
 
-
+Git staging area is really helpful in this context. It allows you to select specific files or even parts of those files for the next commit and leave others for future commits.
 
 1 - Add the right changes.
 2 - Compose a good commit message.
+
+Example:
+modified:1
+modified:2
+modified:3
+modified:4
+deleted:5
+deleted:6
+deleted:7
+
+git add 1
+git diff 2 //See the differences.
+Now suppose File 2 has 2 chunks of changes that don't belong to the same commit. We can add just the first part this way:
+git add -p index.html 
+Now git steps through every chunk of changes with us and asks for every chunk if we want to add it to the staging area. Y/N
+
+Parts of file 2 will be included in staging area and others won't.
+
+
+SECOND PART OF CREATING A VALUABLE  COMMIT: The perfect Message
+
+1. Subject: Concise summary of what happened.
+2. Body: More detailed explanation:
+	-What is now different than before?
+	-What's the reasons for the change?
+	-Is there anything to watch out for/anything particularly remarcable?
+	
+Example:
+git commit
+
+Now an editor will open
+
+'Add captcha for email signup'
+
+If we add an empty line after the subject, git will know we are writing the body of the message.
+'Email signups now require a captcha to be completed:
+-signup.php uses our captcha library
+-invalid signup attempts are now blocked'
+
+Save and close.
+
+-------------------------------------
+
+BRANCHING STRATEGIES
+
+Agree on a branching workflow in your team.
+
+1. Git leaves it completely up to you how to use branches.
+2. You need a written best practice of how work is ideally structured in your team to avoid mistakes and collisions.
+3. It highly depends on your team/team size, on your project, and how you handle releases.
+4. It helps to onboard new team members.
+
+Integrating changes & structuring releases.
+
+1. Mainline development ("Always be integrating")
+	-Few branches
+	-Relatively small commits. You cannot risk big bloated commits in this environment.
+	-High quality testing and QA standards.
+2. State, Release and feature branchs. Branches enhance structures & Workflows.
+	-Different types of branches
+	-They fulfill different types of jobs.
+	
+Most teams wor in between these extremes.
+
+LONG-RUNNING $ SHORT LIVED BRANCHES
+
+Every repository has at least a long-running branch, usually called 'main' or 'master'. There might be others, like 'development' or 'production'. They exist through the complete lifetime of the project.
+
+Common convention. No direct commits to this branches. Commits should only make to this branches through integration(merge or rebase). You don't want to add untested code here.
+
+Tipically, a short lived branch will be based on a long running branch. When you start a new feature, you may base that feature on the main branch. 
+After making some commits, you may want to reintegrate back into main. After that, the feature branch can be deleted. 
+
+Two Examples Branching Strategies.
+
+1. GitHub Flow:
+Very simple. Only one long-running branch(main) + feature/factoring/bugfix branches.
+
+2. GitFlow
+More structure, more rules
+Long-running: 'Main' + 'Develop'
+Short-lived: features, releases, hotfixes.
+Develop is the starting point for any new releases that then are merged into production(main).
+
+-------------------------------
+
+#3 PULL REQUESTS
+
+Why to use them? They are a way to communicate about code and review it. 
+Without a Pull request, you would jump right to merging your code into main.
+When your changes are complex or important, you might want a second pair of eyes look over your code. With pull requests you can invite other people to review your work and give you feedback. 
+
+After some conversation about the code your reviewer might approve the pull request and merge into another branch.
+
+These are useful also if you want to contribute to an open source repository you may not have permission to push commits to.
+A fork is your personal copy of a git repository. You can fork thenoriginal repository, make changes in your forked version and open a pull request to include those changes into the original repository.
+
+Pull requests are based on branches, not individual commits.
+
+--------------------------------------
+
+#4 MERGE CONFLICTS
+
+1. When they might happen
+2. What they actually are
+3. How to solve them
+
+1. They occur when integrating commits from different sources. 
+Git merging capabilities are one of its greatest features.
+Most of the time, GIT will figure things out on its own. 
+There are situations where contradictory changes were made. That's when technology simply can't decide what's wrong or right. 
+Example: The same line has changed on two different commits. Git has no way to detect which change you prefer.
+
+How to know when a conflict has occurred.
+Git will tell you very clearly.
+
+3. How to undo a conflict and start over.
+Dealing with a merge conflict doesn't necessarily mean you have to resolve it.
+You can always undo it and return to a state before.
+
+git merge --abort
+git rebase --abort
+
+You can always return to a clean state. 
+-----------------
+What conflicts actually look like.
+
+Git marks problematic areas in the file.
+
+How to solve a conflict.
+We need to clean up these lines.
+Then, simply by commiting the resolved files, i signal to git that conflic solving is completed. And i can go on with my work.
+
+---------------
+
+#5 . Merge vs Rebase.
+
+Merge: 
+When git performs a merge, it looks for three commits. 
+	1. The common ancestor: If you follow the history between two branches, they always have at least one commit in common. At this point, they had tthe same content. 
+	2. Last commit on branch A
+	3. Last commit on branch B
+	
+Rebase:
+You can live a happy git life just using merge. 
+Some people would prefer the project history to look like a straight line. 
+With rebase, you get a straight line of commits.
+
+git rebase branch-B
+It rewrites commit history.
+
+Warning Notice. 
+Do NOT use rebase on commits taht you've already pushed  on a remote repository.
+Use it for cleaning up your local commit history before merging it into a shared team branch.
