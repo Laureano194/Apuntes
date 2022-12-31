@@ -1,0 +1,69 @@
+Error Handling
+
+A system is fault tolerant if it continues working enven if something is wrong.
+Work like this is never finished. Always in progress. 
+
+Hardware can fail: Uncommon
+Software can fail: Common
+
+Fault-tolerance cannot be achieved using a single computer
+-It might fail
+
+We have to use several computers.
+-Concurrency
+-Parallel programming
+-Distributed programming
+-Message passing is inevitable
+
+Programminglanguages should make this doable.
+
+How to build fault tolerance systems from components that can fail?
+We won't be able to eliminate failure.
+
+Building fault-tolerant software boils down to detecting errors and doung something when errors are detected.
+
+Type of errors:
+- Errors that can be detected at compile time.
+- Errors that can be detected at run-time.
+- Errors that can be inferred.
+- Reproducible errors.
+- Non-reproducible errors.
+
+Philosophy
+- Find methods to prove Software Correct at compile-time.
+- Assume software is incorrect and will fail at run time, then do something about it at run-time.
+
+Proving the self-consistency of small programs won't help.
+This is what tests do. They prove the system is self-consistent, not right. 
+
+How can we make software that works reasonably well even if there are errors in it?
+
+6 requirements.
+
+-Concurrency must be supported.
+-Error encapsulation: We don't want errors propagating around the system.
+-Fault detection.
+-Fault identification.
+-Code upgrade.
+-Stable storage: If the whole thing crashes, when we reboot it we need to be able to go back into the stable storage and see what failed.
+
+The method.
+
+-Detect all errors.
+-If you can't do what you want, try to do something simpler.
+-Handle errors "remotely".
+-Identify the "Error Kernel". The part that must be correct.
+
+What is an error?
+-Undesirable property of a program.
+-Something that crashes a program.
+-A deviation between a desired and observed behaviour.
+
+What should the run-time do when it finds an error?
+-Ignore it(no)
+-Log it(yes) In stable storage.k
+-Try to fix it(possibly) Just don't make matters worse.
+-Crash inmediately(yes)
+
+-Don't make matters worse.
+-Assume somebody else will fix the problem.

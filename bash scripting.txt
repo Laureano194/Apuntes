@@ -1,0 +1,87 @@
+BASH SCRIPTING.
+Born Again Shell: Better version to the one created in 1970.
+It is how we interact with the Linux OS.
+
+touch newfile.txt //Create new file.
+useradd patricia //Adds new user.
+
+which $SHELL
+//--> /bin/bash
+echo "Hi mom" // Print
+nano //Text editor
+
+First bash script.
+
+nano himom.sh //Creates file(if it doesn't exist) and opens and editor
+#! this characters are called SHEBANG
+
+#!/bin/bash
+//This is because we are telling the bash interpreter which scripting language we want to use for this script.
+
+echo "Hi mom!"
+
+ctrl + O
+enter
+bash himom.sh
+or
+. helloworld.sh
+
+Complete script:
+#!/bin/bash
+
+echo "Hello World!"
+sleep 3
+echo "Uh uh"
+sleep 3
+echo "Oh wow"
+sleep 3
+echo "Bye"
+
+---------
+
+#!/bin/bash
+echo "Good morning Chuck"
+sleep 1
+echo "Looking good Chuck"
+sleep 1
+echo "Bye Chuck"
+
+----------
+Variables
+
+#!/bin/bash
+
+name="Patricia" //Variable declaration
+
+echo "Good morning $name"
+sleep 1
+echo "Looking good $name"
+sleep 1
+echo "Bye $name"
+
+----------
+echo "What is your name?"
+read name //Asks for an input
+
+----------
+
+Ejecutar script con argumentos.
+name = $1 //Position parameter
+
+./bestdayever.sh "Laureano" //Argument
+
+-----------
+You can have variables that are outputs of other commands.
+First, let's learn some commands.
+pwd //Present working directory
+date //Date
+whoami // User
+
+user=$(whoami)
+date=$(date)
+workingdir=$(pwd)
+echo $date
+echo $user
+echo $workingdir
+
+
